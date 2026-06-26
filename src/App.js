@@ -1,4 +1,4 @@
-      import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const products = [
   { id: 1, name: "Neem & Charcoal Face Wash", price: 299, img: "🧴", desc: "Deep cleansing, anti-acne formula" },
@@ -13,6 +13,14 @@ export default function App() {
   const [page, setPage] = useState('home');
   const [form, setForm] = useState({ name: '', phone: '', address: '' });
   const [orderPlaced, setOrderPlaced] = useState(false);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+    return () => document.body.removeChild(script);
+  }, []);
 
   const addToCart = (product) => {
     setCart(prev => {
@@ -74,8 +82,6 @@ export default function App() {
 
   return (
     <div style={styles.app}>
-      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
       <div style={styles.header}>
         <span style={styles.logo} onClick={() => setPage('home')}>✦ Glowtra</span>
         <button style={styles.cartBtn} onClick={() => setPage('cart')}>
@@ -163,4 +169,4 @@ export default function App() {
       )}
     </div>
   );
-    }  
+}
