@@ -33,7 +33,7 @@ export default function App() {
       return;
     }
     const options = {
-      key: 'YOUR_RAZORPAY_KEY_ID',
+      key: 'rzp_test_T6CKG4ljLTheIh,
       amount: total * 100,
       currency: 'INR',
       name: 'Glowtra',
